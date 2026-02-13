@@ -1,0 +1,1026 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #0d0b1f; /* fallback dark */
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(#2b1b4d, #0f1026);
+  overflow: hidden;
+  font-family: monospace;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Moon */
+.moon {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  width: 80px;
+}
+.moon {
+  filter: drop-shadow(0 0 12px rgba(200, 180, 255, 0.6));
+}
+
+
+/* Stars */
+.star {
+  position: absolute;
+  width: 12px;
+}
+
+.star1 {
+  top: 120px;
+  left: 200px;
+}
+
+.star2 {
+  top: 80px;
+  left: 400px;
+}
+
+
+
+/* Character */
+.character-wrapper {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bob 4s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -6px);
+  }
+}
+
+
+/* Text */
+.message {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #f2e9ff;
+  font-size: 18px;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 1s;
+}
+
+/* blinking cursor */
+.message::after {
+  content: "|";
+  animation: blink 1s infinite;
+  margin-left: 4px;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+
+
+
+.star3 {
+  top: 160px;
+  left: 600px;
+}
+
+.star4 {
+  top: 60px;
+  left: 800px;
+}
+
+.star5 {
+  top: 200px;
+  left: 1000px;
+}
+
+/* Twinkle animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.star {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+
+
+.gift {
+  position: absolute;
+  bottom: 80px;
+  left: calc(50% + 140px); /* slightly to the right of you */
+  width: 48px;
+  cursor: pointer;
+  animation: giftBounce 2.5s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+@keyframes giftBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* CLOUD RESET */
+.cloud {
+  width: 180px;
+  opacity: 0.8;
+}
+
+/* Cloud wrappers handle movement */
+.cloud-wrapper {
+  position: absolute;
+  left: -200px; /* start off-screen */
+}
+
+/* Individual cloud positions + speeds */
+.cloud1 {
+  top: 220px;
+  animation: cloudMove 60s linear infinite;
+}
+
+.cloud2 {
+  top: 300px;
+  animation: cloudMove 90s linear infinite;
+  opacity: 0.6;
+  transform: scale(0.85);
+}
+
+/* Movement animation */
+@keyframes cloudMove {
+  from {
+    left: -200px;
+  }
+  to {
+    left: 120vw;
+  }
+}
+
+/* COUNTDOWN WRAPPER */
+.countdown-wrapper {
+  position: absolute;
+  bottom: 300px; /* sits above sitting character */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: countdownFloat 4s ease-in-out infinite;
+  z-index: 3;
+}
+
+/* COUNTDOWN BOXES */
+.countdown-box {
+  min-width: 48px;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 20px;
+  color: #f6f1ff;
+  background: rgba(60, 45, 90, 0.65);
+  border: 1px solid #b9a6ff;
+  border-radius: 6px; /* soft pixel-rounded */
+  box-shadow:
+    inset 0 0 6px rgba(255,255,255,0.1),
+    0 0 8px rgba(185,166,255,0.4);
+  font-family: monospace;
+}
+
+/* COLON */
+.colon {
+  color: #d8ccff;
+  font-size: 22px;
+  animation: colonPulse 1.5s ease-in-out infinite;
+}
+
+/* FLOATING EFFECT */
+@keyframes countdownFloat {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -6px);
+  }
+}
+
+/* COLON PULSE */
+@keyframes colonPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Hide countdown smoothly */
+.fade-out {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+/* Gift locked before midnight */
+.gift {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+
+.open-line {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 16px;
+  color: #ffc9f5;
+  animation: glowText 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+  from { text-shadow: 0 0 4px #ffb6ff; }
+  to { text-shadow: 0 0 12px #ff8cff; }
+}
+
+.gift-wrapper {
+  position: absolute;
+  bottom: 85px;
+  left: calc(50% + 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.gift-label {
+  font-size: 14px;
+  color: #ffc9f5;
+  margin-bottom: 4px;
+  opacity: 0;
+  transition: opacity 1s ease;
+  text-shadow: 0 0 6px #ff8cff;
+}
+
+/* Show label only after midnight */
+.gift.active + .gift-label,
+.gift.active ~ .gift-label {
+  opacity: 1;
+}
+
+
+.pixel-open-btn {
+  position: absolute;
+  bottom: 110px;
+  left: calc(50% + 120px);
+
+  padding: 10px 18px;
+  background: #3b2a63;
+  border: 3px solid #b9a6ff;
+  outline: 2px solid #2a1c45;
+  color: #f6f1ff;
+  font-family: monospace;
+  font-size: 14px;
+  cursor: pointer;
+
+  opacity: 0;
+  pointer-events: none;
+
+  box-shadow: 0 0 8px rgba(185,166,255,0.5);
+  transition: all 0.4s ease;
+  
+  animation: floatBtn 2.5s ease-in-out infinite,
+           glowPulse 2s ease-in-out infinite alternate;
+
+}
+
+.pixel-open-btn:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 22px #ff9cf5;
+}
+
+@keyframes floatBtn {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 6px #b9a6ff; }
+  100% { box-shadow: 0 0 18px #ff8cff; }
+}
+
+/* ================= PARK PAGE ================= */
+
+.park-scene {
+  height: 100vh;
+  background: linear-gradient(#2b1b4d, #0f1026);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  font-family: monospace;
+}
+
+.park-title {
+  color: #ffd6ff;
+  text-shadow: 0 0 10px #ff9eea,
+               0 0 20px #c084fc;
+}
+
+
+.park-char {
+  bottom: 120px;
+}
+
+.heart {
+  position: absolute;
+  font-size: 28px;
+  cursor: pointer;
+  animation: floatHeart 3s ease-in-out infinite;
+}
+
+.heart1 { left: 30%; top: 40%; }
+.heart2 { left: 50%; top: 35%; }
+.heart3 { left: 70%; top: 45%; }
+
+@keyframes floatHeart {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Dreamy Bubble */
+.speech-bubble {
+  position: absolute;
+  bottom: 220px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  border: 2px solid rgba(255,200,255,0.6);
+  padding: 15px 25px;
+  border-radius: 20px;
+  color: white;
+  max-width: 300px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  text-shadow: 0 0 8px rgba(255,200,255,0.7);
+}
+
+.next-arrow {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  font-size: 40px;
+  color: #ffc9f5;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.next-arrow:hover {
+  transform: translateX(8px);
+}
+
+/* ================= GAME PAGE ================= */
+
+.game-scene {
+  height: 100vh;
+  background: linear-gradient(#2b1b4d, #0f1026);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  font-family: monospace;
+  color: white;
+}
+
+#score {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* Falling stars */
+.falling-star {
+  position: absolute;
+  top: -30px;
+  font-size: 24px;
+  cursor: pointer;
+  animation: glowStar 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowStar {
+  from { text-shadow: 0 0 4px #fff; }
+  to { text-shadow: 0 0 12px #ffccff; }
+}
+
+/* Final message */
+.final-message {
+  position: absolute;
+  top: 20%;   /* was 18% */
+  left: 50%;
+  transform: translateX(-50%);
+  ...
+}
+
+
+/* Biting image reveal */
+.bite-image {
+  position: absolute;
+  top: 58%;   /* was 40% */
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 320px;   /* slightly bigger */
+  opacity: 0;
+  animation: biteReveal 1s ease forwards;
+  filter: drop-shadow(0 0 25px rgba(255, 180, 255, 0.7));
+}
+
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Next button */
+.next-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #3b2a63;
+  border: 3px solid #b9a6ff;
+  color: white;
+  cursor: pointer;
+  font-family: monospace;
+  transition: 0.3s ease;
+}
+
+.next-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px #ff9cf5;
+}
+.next-arrow {
+  position: absolute;
+  right: 40px;
+  font-size: 40px;
+  color: #ffc9f5;
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.4s ease;
+  text-shadow: 0 0 12px rgba(255,180,255,0.8);
+}
+
+.next-arrow:hover {
+  transform: translateX(8px);
+}
+
+/* ================= ROOM SCENE ================= */
+
+.room-scene {
+  height: 100vh;
+  background: linear-gradient(#2b1b4d, #0f1026);
+  position: relative;
+  overflow: hidden;
+  font-family: monospace;
+  text-align: center;
+  color: white;
+}
+
+.room-title {
+  margin-top: 25px;
+  text-shadow: 0 0 10px rgba(255,200,255,0.6);
+}
+
+.room-couple {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.room-character {
+  width: 220px;
+}
+
+/* Window */
+.window {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  width: 140px;
+  height: 100px;
+  background: rgba(255,255,255,0.05);
+  border: 3px solid rgba(200,180,255,0.5);
+  border-radius: 10px;
+}
+
+.moon-glow {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #fff 20%, #bbaaff 70%);
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  filter: blur(2px);
+}
+
+/* Objects */
+.room-object {
+  position: absolute;
+  font-size: 26px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.room-object:hover {
+  transform: scale(1.2);
+}
+
+/* Visible objects */
+.teddy { left: 20%; bottom: 80px; }
+.photo { left: 70%; bottom: 120px; }
+
+/* Slightly hidden ones */
+.headphones {
+  left: 35%;
+  bottom: 160px;
+  opacity: 0.5;
+}
+
+.letter {
+  left: 55%;
+  bottom: 70px;
+  opacity: 0.6;
+}
+
+.star {
+  left: 80%;
+  bottom: 200px;
+  opacity: 0.4;
+}
+
+/* Bubble already styled from before */
+
+/* ================= REAL ROOM BACKGROUND ================= */
+
+
+/* Clickable Zones */
+.click-zone {
+  position: absolute;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Hover Glow */
+.click-zone:hover {
+  box-shadow: 0 0 18px rgba(255, 200, 255, 0.8);
+  border-radius: 8px;
+}
+
+/* Positioning zones (adjustable if needed) */
+
+.teddy {
+  bottom: 180px;
+  left: 60%;
+  width: 60px;
+  height: 60px;
+}
+
+.dream {
+  top: 180px;
+  left: 38%;
+  width: 70px;
+  height: 80px;
+}
+
+.lamp {
+  bottom: 160px;
+  right: 120px;
+  width: 70px;
+  height: 120px;
+}
+
+.book {
+  bottom: 110px;
+  right: 140px;
+  width: 80px;
+  height: 40px;
+}
+
+.star {
+  top: 200px;
+  right: 260px;
+  width: 50px;
+  height: 60px;
+}
+
+.room-bubble {
+  position: absolute;
+  background: rgba(40, 30, 80, 0.9);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  max-width: 220px;
+  text-align: center;
+  pointer-events: none;
+}
+.room-wrapper {
+  position: fixed;
+  inset: 0;
+}
+
+
+.room-bg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Click zones */
+.click-zone {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.click-zone:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 6px rgba(255, 200, 255, 0.8));
+}
+
+/* Approximate positions (we adjust if needed) */
+
+.teddy { width: 60px; height: 60px; bottom: 120px; left: 450px; }
+.dream { width: 70px; height: 80px; top: 120px; left: 280px; }
+.lamp { width: 60px; height: 100px; bottom: 140px; right: 140px; }
+.book { width: 70px; height: 40px; bottom: 31px; right: 230px; }
+.star { width: 40px; height: 40px; top: 140px; right: 250px; }
+
+/* Message area */
+.room-message {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(40, 30, 80, 0.9);
+  padding: 14px 24px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  max-width: 500px;
+  text-align: center;
+}
+
+.glow-message {
+  position: absolute;
+  color: #ffd6ff;
+  font-size: 16px;
+  font-family: monospace;
+  text-shadow: 0 0 6px #ffb3ff, 0 0 12px #ff80ff;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+
+.click-zone {
+  position: absolute;
+  cursor: pointer;
+  border: none;
+}
+/* ===== ROOM FULLSCREEN FIX ===== */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.room-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.room-image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+
+
+
+
+.click-zone {
+  position: absolute;
+  cursor: pointer;
+}
+
+.glow-message {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 20px;
+  background: rgba(40, 20, 80, 0.8);
+  color: #ffd6ff;
+  font-family: monospace;
+  font-size: 16px;
+  text-align: center;
+  text-shadow: 0 0 8px #ffb3ff;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* ===== FORCE FULLSCREEN ROOM ===== */
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.room-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d0b1f;
+}
+
+.room-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100vw;
+  max-height: 100vh;
+}
+.room-header {
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 5;
+}
+
+.room-title {
+  font-family: monospace;
+  font-size: 28px;
+  letter-spacing: 3px;
+  color: #ffd6ff;
+  text-shadow:
+    0 0 6px #ffb3ff,
+    0 0 12px #ff80ff;
+  margin: 0;
+}
+
+.room-hint {
+  font-family: monospace;
+  font-size: 14px;
+  color: #f5e6ff;
+  opacity: 0.85;
+  margin-top: 6px;
+  text-shadow: 0 0 6px rgba(255,180,255,0.6);
+}
+
+/* ===== GAME NIGHT SKY ===== */
+
+.game-scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(#2b1b4d, #0f1026);
+  font-family: monospace;
+}
+
+/* Title */
+.game-title {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffd6ff;
+  text-shadow: 0 0 8px #ffb3ff;
+  font-size: 24px;
+}
+
+/* Score */
+.game-score {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f0d6ff;
+  font-size: 14px;
+  text-shadow: 0 0 6px #c084fc;
+}
+
+/* ===== PIXEL GAME SKY ===== */
+
+.game-scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(#2b1b4d, #0f1026);
+  font-family: monospace;
+}
+
+/* Pixel Moon */
+.pixel-moon {
+  position: absolute;
+  top: 6%;
+  right: 6%;
+  width: 120px;
+  animation: moonGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes moonGlow {
+  from { filter: drop-shadow(0 0 10px #c4b5fd); }
+  to { filter: drop-shadow(0 0 25px #e9d5ff); }
+}
+
+/* Pixel Clouds */
+.pixel-cloud {
+  position: absolute;
+  width: 220px;
+  opacity: 0.8;
+  animation: moveClouds linear infinite;
+}
+
+.cloud1 {
+  top: 20%;
+  left: -300px;
+  animation-duration: 40s;
+}
+
+.cloud2 {
+  top: 35%;
+  left: -400px;
+  animation-duration: 60s;
+}
+
+@keyframes moveClouds {
+  from { transform: translateX(0); }
+  to { transform: translateX(150vw); }
+}
+
+/* Background twinkle */
+.bg-stars {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
+  animation: twinkle 5s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.1; }
+  to { opacity: 0.25; }
+}
+
+.falling-star {
+  z-index: 5;
+  text-shadow: 0 0 8px #fff, 0 0 15px #ffb3ff;
+}
+
+.final-scene {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
+}
+
+.final-message {
+  font-size: 20px;
+  color: #ffd6ff;
+  margin-bottom: 25px;
+  white-space: nowrap;
+}
+
+
+.bite-image {
+  width: 240px;
+}
+
+.next-arrow {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  font-size: 28px;
+  color: #ffc9ff;
+  cursor: pointer;
+  animation: glowArrow 1.5s infinite alternate;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes glowArrow {
+  from { text-shadow: 0 0 5px #ffb3ff; }
+  to { text-shadow: 0 0 15px #ff80ff; }
+}
+.stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  z-index: -2;
+}
+.moon {
+  position: absolute;
+  top: 60px;
+  right: 100px;
+  width: 120px;
+  filter: drop-shadow(0 0 15px #b388ff);
+  opacity: 0.9;
+}
+
+.cloud {
+  position: absolute;
+  width: 180px;
+  opacity: 0.6;
+  animation: floatCloud 30s linear infinite;
+}
+
+.cloud1 {
+  top: 200px;
+  left: -200px;
+}
+
+.cloud2 {
+  top: 350px;
+  left: -300px;
+  animation-duration: 45s;
+}
+
+@keyframes floatCloud {
+  from { transform: translateX(0); }
+  to { transform: translateX(150vw); }
+}
+.heart {
+  font-size: 30px;
+  position: absolute;
+  cursor: pointer;
+  animation: floatHeart 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px #ff66c4);
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+.sparkle-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  animation: sparkleMove 40s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkleMove {
+  from { background-position: 0 0; }
+  to { background-position: 500px 500px; }
+}
