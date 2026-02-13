@@ -36,7 +36,7 @@ function startCountdown() {
     const current = new Date();
     const diff = target - current;
 
-    if (diff <=0) {
+    if (true) {
       document.getElementById("hours").innerText = "00";
       document.getElementById("minutes").innerText = "00";
       document.getElementById("seconds").innerText = "00";
@@ -94,5 +94,6 @@ openBtn.addEventListener("click", function() {
 
  
 }
+
 
 
